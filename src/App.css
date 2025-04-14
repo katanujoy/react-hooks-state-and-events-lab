@@ -1,0 +1,17 @@
+/* Dark Mode */
+.App.dark {
+    background-color: #333;
+    color: white;
+  }
+  
+  /* Light Mode */
+  .App.light {
+    background-color: #fff;
+    color: black;
+  }
+  
+  /* Item in Cart */
+  .in-cart {
+    text-decoration: line-through;
+  }
+  

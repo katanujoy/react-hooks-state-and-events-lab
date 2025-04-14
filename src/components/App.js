@@ -1,20 +1,25 @@
-import React from "react";
-import ShoppingList from "./ShoppingList";
-import itemData from "../data/items";
+// src/components/App.js
+import React, { useState } from 'react';
+import ShoppingList from './ShoppingList'; // Assuming you have this component
+import './App.css';  // This should work if App.css is directly in the src folder
 
 function App() {
+  // Step 1: Create a state variable to manage the theme (dark or light)
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // replace 'false' with a state variable that can be toggled between true and false
-  // this will be used for the Dark Mode Toggle feature
-  const appClass = false ? "App dark" : "App light"
+  // Step 2: Event handler to toggle the theme
+  const toggleDarkMode = () => {
+    setIsDarkMode(prevMode => !prevMode);  // Toggle the current mode
+  };
 
   return (
-    <div className={appClass}>
-      <header>
-        <h2>Shopster</h2>
-        <button>Dark Mode</button>
-      </header>
-      <ShoppingList items={itemData} />
+    <div className={`App ${isDarkMode ? 'dark' : 'light'}`}>
+      {/* Button to toggle dark/light mode */}
+      <button onClick={toggleDarkMode}>
+        {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      </button>
+      {/* Add ShoppingList component here */}
+      <ShoppingList />
     </div>
   );
 }

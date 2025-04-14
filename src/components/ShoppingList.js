@@ -1,22 +1,14 @@
-import React from "react";
-import Item from "./Item";
+// src/components/ShoppingList.js
+import React from 'react';
 
 function ShoppingList({ items }) {
   return (
-    <div className="ShoppingList">
-      <div className="Filter">
-        <select name="filter">
-          <option value="All">Filter by category</option>
-          <option value="Produce">Produce</option>
-          <option value="Dairy">Dairy</option>
-          <option value="Dessert">Dessert</option>
-        </select>
-      </div>
-      <ul className="Items">
-        {items.map((item) => (
-          <Item key={item.id} name={item.name} category={item.category} />
-        ))}
-      </ul>
+    <div className="Items">
+      {items.map(item => (
+        <div key={item.id} className="item">
+          <p>{item.name}</p>
+        </div>
+      ))}
     </div>
   );
 }

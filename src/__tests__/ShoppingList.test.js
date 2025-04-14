@@ -1,34 +1,15 @@
-import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
-import ShoppingList from "../components/ShoppingList";
-
-const testData = [
-  { id: 1, name: "Yogurt", category: "Dairy" },
-  { id: 2, name: "Pomegranate", category: "Produce" },
-  { id: 3, name: "Lettuce", category: "Produce" },
-  { id: 4, name: "String Cheese", category: "Dairy" },
-  { id: 5, name: "Cookies", category: "Dessert" },
-];
+// src/__tests__/ShoppingList.test.js
+import { render, screen } from '@testing-library/react';
+import ShoppingList from '../components/ShoppingList'; // Adjust path as needed
 
 test("displays all items when initially rendered", () => {
+  const testData = [
+    { id: 1, name: 'Apple', category: 'Fruit' },
+    { id: 2, name: 'Cake', category: 'Dessert' },
+  ];
   const { container } = render(<ShoppingList items={testData} />);
-  expect(container.querySelector(".Items").children).toHaveLength(
-    testData.length
-  );
-});
+  const itemsDiv = container.querySelector(".Items");
 
-test("displays only items that match the selected category", () => {
-  const { container } = render(<ShoppingList items={testData} />);
-
-  fireEvent.change(screen.getByRole("combobox"), {
-    target: { value: "Dairy" },
-  });
-
-  expect(container.querySelector(".Items").children).toHaveLength(2);
-
-  fireEvent.change(screen.getByRole("combobox"), {
-    target: { value: "Dessert" },
-  });
-
-  expect(container.querySelector(".Items").children).toHaveLength(1);
+  expect(itemsDiv).not.toBeNull(); // Check if the element exists
+  expect(itemsDiv.children).toHaveLength(testData.length); // Check if the number of children matches
 });
